@@ -1,0 +1,105 @@
+openapi: 3.0.0
+info:
+  description: Smart Home API specifications
+  version: 1.0.0
+  title: Smart Home API specifications
+paths:
+  /homeManagement/v1/user/profile:
+    get:
+      summary: Get user profile and homes
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: success
+                  message:
+                    type: object
+                    properties:
+                      userId:
+                        type: number
+                        example: 1
+                      name:
+                        type: string
+                        example: "Tejas"
+                      email:
+                        type: string
+                        example: "tejas@gmail.com"
+                      homes:
+                        type: array
+                        items:
+                          properties:
+                            homeId:
+                              type: number
+                              example: 1
+                            name:
+                              type: string
+                              example: "spintly office"
+  /homeManagement/v1/devices:
+    get:
+      summary: Get user profile and homes
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: success
+                  message:
+                    type: object
+                    properties:
+                      devices:
+                        type: array
+                        items:
+                          properties:
+                            deviceId:
+                              type: number
+                              example: 12
+                            name:
+                              type: string
+                              example: "conference room"
+                            homeId:
+                              type: number
+                              example: 14
+                            channels:
+                              type: object
+                              properties:
+                                channel1:
+                                  type: boolean
+                                  example: true
+                                channel2:
+                                  type: boolean
+                                  example: false
+                                channel3:
+                                  type: boolean
+                                  example: true
+                                channel4:
+                                  type: boolean
+                                  example: false
+  
+  /homeManagement/v1/device/{deviceId}/channel/{channelId}:
+    post:
+      summary: Toggle the light
+      responses:
+        200:
+          description: Switch toggled successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type:
+                    type: string
+                    example: success
+                  message:
+                    type: string
+                    example: "light toggled"
